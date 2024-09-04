@@ -10,7 +10,7 @@ jobs:
       - name: Set Firebase service account and project ID
         id: vars
         run: |
-          if [[ "${{ github.base_ref }}" == "master" ]]; then
+          if [[ "${{ github.base_ref }}" == "main" ]]; then
             echo "FIREBASE_SERVICE_ACCOUNT=FIREBASE_SERVICE_ACCOUNT_UT_DNR_UGS_CCUS_PROD" >> $GITHUB_ENV
             echo "PROJECT_ID=ut-dnr-ugs-ccus-prod" >> $GITHUB_ENV
           else
