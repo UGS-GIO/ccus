@@ -1,5 +1,5 @@
 {
-  "name": "geohaz-v2",
+  "name": "ccus",
   "private": true,
   "version": "1.0.0-beta.2",
   "type": "module",
@@ -45,7 +45,7 @@
     "cmdk": "^0.2.1",
     "dayjs": "^1.11.10",
     "dompurify": "^3.1.6",
-    "lucide-react": "^0.416.0",
+    "lucide-react": "^0.427.0",
     "query-string": "^9.1.0",
     "react": "^18.2.0",
     "react-day-picker": "^8.10.1",
@@ -76,7 +76,7 @@
     "prettier": "^3.2.5",
     "prettier-plugin-tailwindcss": "^0.5.14",
     "sass": "^1.77.8",
-    "tailwindcss": "^3.4.3",
+    "tailwindcss": "^3.4.10",
     "typescript": "^5.4.5",
     "vite": "^5.2.9",
     "vitest": "^2.0.4"

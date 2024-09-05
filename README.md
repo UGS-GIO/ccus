@@ -1,10 +1,10 @@
-# Geological Hazards Portal v2
+# Carbon Capture Utilization Storage (CCUS) Frontend
 
 <p align="center">
   <img src="public/logo_main.png" alt="Utah Geological Survey Logo" width="200"/>
 </p>
 
-The UGS Geological Hazards Portal v2 crafted with @arcgis/core, Shadcn and Vite. Built with responsiveness and accessibility in mind.
+The CCUS Portal is crafted with @arcgis/core, Shadcn and Vite. Built with responsiveness and accessibility in mind.
 
 ## Features
 

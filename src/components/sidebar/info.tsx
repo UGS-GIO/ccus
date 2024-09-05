@@ -6,14 +6,25 @@ import { Button } from '../custom/button';
 import { useSidebar } from '@/hooks/use-sidebar';
 import Layers from '@/components/sidebar/layers';
 import { acknowledgements, dataDisclaimer, dataSources, dataSourcesShortened, mapDetails, mapDetailsShortened, references } from '@/data/website-info';
+import { BackToMenuButton } from '../custom/back-to-menu-button';
 
 function Info() {
   type ModalType = 'references' | 'disclaimer' | 'acknowledgements' | ''
-  const [modalOpen, setModalOpen] = useState(false)
-  const [modalType, setModalType] = useState<ModalType | ''>('')
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalType, setModalType] = useState<ModalType | ''>('');
   const { setCurrentContent } = useSidebar();
   const contentRef = useRef<HTMLDivElement>(null);
-  const [expandedItem, setExpandedItem] = useState<string | null>(null);
+  const [isMapDetailsExpanded, setIsMapDetailsExpanded] = useState(false);
+  const [isDataSourcesExpanded, setIsDataSourcesExpanded] = useState(false);
+
+  const toggleMapDetails = () => {
+    setIsMapDetailsExpanded(!isMapDetailsExpanded);
+  };
+
+  const toggleDataSources = () => {
+    setIsDataSourcesExpanded(!isDataSourcesExpanded);
+  };
+
   const handleOpenModal = (type: ModalType) => {
     setModalType(type);
     setModalOpen(true);
@@ -24,24 +35,17 @@ function Info() {
     setModalType('');
   };
 
-  const handleAccordionToggle = (id: string) => {
-    setExpandedItem(expandedItem === id ? null : id);
-  }
-
   return (
     <div className="flex flex-col h-full">
-      <div
-        className="flex-grow ml-2 overflow-y-auto"
-        ref={contentRef}
-      >
-        <div className='mr-2' key={`map-details-accordion`}>
-          <Accordion type="single" collapsible>
+      <BackToMenuButton />
+      <div className="ml-2 overflow-y-auto flex-grow" ref={contentRef}>
+        <div className="mr-2" key="map-details-accordion">
+          <Accordion type="multiple">
             <AccordionItem value="map-details-accordion-item-1">
-              <AccordionHeader onClick={() => handleAccordionToggle('map-details-accordion-item-1')} >
-                <AccordionTrigger >
+              <AccordionHeader onClick={toggleMapDetails}>
+                <AccordionTrigger>
                   <div className="flex flex-col mx-2 items-start">
                     <h3 className="font-large text-left text-lg">Map Details</h3>
-
                   </div>
                 </AccordionTrigger>
               </AccordionHeader>
@@ -49,20 +53,19 @@ function Info() {
                 {mapDetails}
               </AccordionContent>
             </AccordionItem>
-
           </Accordion>
-          {expandedItem !== 'map-details-accordion-item-1' && (
-            <>
+          {!isMapDetailsExpanded && (
+            <div>
               {mapDetailsShortened}
-            </>
+            </div>
           )}
         </div>
 
-        <div className='mr-2 my-2 ' key={`data-sources-accordion`}>
-          <Accordion type="single" collapsible>
+        <div className="mr-2" key="data-sources-accordion">
+          <Accordion type="multiple">
             <AccordionItem value="data-sources-accordion-item-1">
-              <AccordionHeader onClick={() => handleAccordionToggle('data-sources-accordion-item-1')} >
-                <AccordionTrigger >
+              <AccordionHeader onClick={toggleDataSources}>
+                <AccordionTrigger>
                   <div className="flex flex-col mx-2 items-start">
                     <h3 className="font-large text-left text-lg">Data Sources</h3>
                   </div>
@@ -73,11 +76,10 @@ function Info() {
               </AccordionContent>
             </AccordionItem>
           </Accordion>
-          {expandedItem !== 'data-sources-accordion-item-1' && (
-            <>
+          {!isDataSourcesExpanded && (
+            <div>
               {dataSourcesShortened}
-            </>
-
+            </div>
           )}
         </div>
 
@@ -132,8 +134,8 @@ function Info() {
         </Dialog>
       </div>
 
-      <div className="flex-none flex justify-center space-x-4 m-4 border-t border-secondary">
-        <div className='p-4'>
+      <div className="flex justify-center space-x-4 border-t border-secondary">
+        <div className='pt-6'>
           <Button
             onClick={() => setCurrentContent({
               title: 'Layers',
@@ -142,7 +144,6 @@ function Info() {
               componentPath: '/src/components/sidebar/layers',
               component: Layers
             })}
-            className="mb-2 md:mb-0"
           >
             Start Exploring
           </Button>
