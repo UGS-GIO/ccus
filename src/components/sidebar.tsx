@@ -69,7 +69,7 @@ export default function Sidebar({
               className={`flex flex-col justify-end truncate ${isCollapsed ? 'invisible w-0' : 'visible w-auto'
                 }`}
             >
-              <span className='font-medium'>Geological Hazards Portal</span>
+              <span className='font-medium'>CCUS Portal</span>
               <span className='text-sm'>Utah Geological Survey</span>
             </div>
           </div>
