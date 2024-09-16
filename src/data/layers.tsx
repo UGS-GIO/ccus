@@ -4,41 +4,11 @@ import { createRoot } from "react-dom/client";
 import { LayerProps, WMSLayerProps } from "@/lib/types/mapping-types";
 import Graphic from "@arcgis/core/Graphic";
 import { Feature } from "geojson";
+import { BasinNamesPopup, OilGasFieldsPopup, PipelinesPopup, RiversPopup, SCO2Popup, SeamlessGeologicalUnitsPopup } from "@/data/popups";
 
 const GEOSERVER_URL_PROD = 'https://ugs-geoserver-prod-flbcoqv7oa-uc.a.run.app/geoserver';
 const ENERGY_MINERALS_WORKSPACE = 'EnergyMinerals';
 const PUBLIC_WORKSPACE = 'public';
-
-// Placeholder components for popup content
-function BasinNamesPopup({ graphic }: { graphic: __esri.Graphic }) {
-    console.log(graphic);
-    return <div>Basin Names Popup Content</div>;
-}
-
-function OilGasFieldsPopup({ graphic }: { graphic: __esri.Graphic }) {
-    console.log(graphic);
-    return <div>Oil and Gas Fields Popup Content</div>;
-}
-
-function PipelinesPopup({ graphic }: { graphic: __esri.Graphic }) {
-    console.log(graphic);
-    return <div>Pipelines Popup Content</div>;
-}
-
-function SCO2Popup({ graphic }: { graphic: __esri.Graphic }) {
-    console.log(graphic);
-    return <div>SCO2 Popup Content</div>;
-}
-
-function RiversPopup({ graphic }: { graphic: __esri.Graphic }) {
-    console.log(graphic);
-    return <div>Rivers Popup Content</div>;
-}
-
-function SeamlessGeologicalUnitsPopup({ graphic }: { graphic: __esri.Graphic }) {
-    console.log(graphic);
-    return <div>Seamless Geological Units Popup Content</div>;
-}
 
 // Basin Names WMS Layer
 const basinNamesWMSConfig: WMSLayerProps = {
@@ -206,7 +176,7 @@ const pipelinesWMSConfig: WMSLayerProps = {
 const riversWMSConfig: WMSLayerProps = {
     type: 'wms',
     url: `${GEOSERVER_URL_PROD}/${PUBLIC_WORKSPACE}/rivers/ows`,
-    title: 'Pipelines',
+    title: 'Major Rivers',
     visible: true,
     sublayers: [
         {
