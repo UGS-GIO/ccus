@@ -31,13 +31,23 @@ export function createLineSymbol(symbolizer: Symbolizer): __esri.Symbol {
 export function createPolygonSymbol(symbolizer: any): __esri.Symbol {
 
     const {
-
+        fill,
+        stroke,
+        "stroke-width": strokeWidth,
+        "stroke-linecap": strokeLinecap,
+        "stroke-linejoin": strokeLine
     } = symbolizer.Polygon;
 
-    // console.log('polygon-symbolizer', symbolizer);
-
     return new SimpleFillSymbol({
-        // fill this in with real values
+        color: fill,
+        style: "solid",
+        outline: {
+            color: stroke,
+            width: strokeWidth,
+            style: "solid",
+            cap: strokeLinecap,
+            join: strokeLine
+        }
     });
 }
 
