@@ -1,8 +1,7 @@
-import { FileText, House, Info as InfoIcon, Layers as LayersIcon, Route, Settings } from 'lucide-react'
+import { House, Info as InfoIcon, Layers as LayersIcon, Route, Settings } from 'lucide-react'
 import Info from '../components/sidebar/info'
 import Layers from '../components/sidebar/layers'
 import MapConfigurations from '@/components/sidebar/map-configurations'
-import ReportGenerator from '@/components/sidebar/report-generator'
 
 export interface NavLink {
   title: string
@@ -41,20 +40,6 @@ export const sidelinks: SideLink[] = [
     label: '',
     icon: <Settings className='stroke-foreground' />,
     component: MapConfigurations, // Direct component reference
-  },
-  // {
-  //   title: 'Geological Unit Search',
-  //   label: '',
-  //   icon: <Database />,
-  //   component: GeologicalUnitSearch, // Direct component reference
-  // },
-  {
-    title: 'Report Generator',
-    label: 'new!',
-    icon: <FileText className='stroke-foreground' />,
-    component: ReportGenerator,
-
-
   },
   {
     title: 'Utah Geology Homepage',
