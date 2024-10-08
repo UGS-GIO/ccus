@@ -6,22 +6,23 @@ import Graphic from "@arcgis/core/Graphic";
 import { Feature } from "geojson";
 import { BasinNamesPopup, OilGasFieldsPopup, PipelinesPopup, RiversPopup, SCO2Popup, SeamlessGeologicalUnitsPopup } from "@/data/popups";
 
-const GEOSERVER_URL_PROD = 'https://ugs-geoserver-prod-flbcoqv7oa-uc.a.run.app/geoserver';
-const ENERGY_MINERALS_WORKSPACE = 'EnergyMinerals';
-const PUBLIC_WORKSPACE = 'public';
+const PROD_GEOSERVER_URL = 'https://ugs-geoserver-prod-flbcoqv7oa-uc.a.run.app/geoserver/';
+const ENERGY_MINERALS_WORKSPACE = 'energy_mineral';
 
 // Basin Names WMS Layer
+const basinNamesLayerName = 'basin_names';
+const basinNamesLayerTitle = 'Basin Names';
 const basinNamesWMSConfig: WMSLayerProps = {
     type: 'wms',
-    url: `${GEOSERVER_URL_PROD}/${ENERGY_MINERALS_WORKSPACE}/basin_names/ows`,
-    title: 'Basin Names',
+    url: `${PROD_GEOSERVER_URL}/wms`,
+    title: basinNamesLayerTitle,
     visible: true,
     sublayers: [
         {
-            name: 'basin_names',
+            name: `${ENERGY_MINERALS_WORKSPACE}:${basinNamesLayerName}`,
             popupEnabled: true,
             queryable: true,
-            legendUrl: `${GEOSERVER_URL_PROD}/${ENERGY_MINERALS_WORKSPACE}/wms?REQUEST=GetLegendGraphic&VERSION=1.3.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=${ENERGY_MINERALS_WORKSPACE}:basin_names`,
+            // legendUrl: `${GEOSERVER_URL_PROD}/${ENERGY_MINERALS_WORKSPACE}/wms?REQUEST=GetLegendGraphic&VERSION=1.3.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=${ENERGY_MINERALS_WORKSPACE}:basin_names`,
         },
     ],
     fetchFeatureInfoFunction: async (query) => {
@@ -65,17 +66,19 @@ const basinNamesWMSConfig: WMSLayerProps = {
 };
 
 // Oil and Gas Fields WMS Layer
+const oilGasFieldsLayerName = 'basin_names';
+const oilGasFieldsTitle = 'Oil and Gas Fields';
 const oilGasFieldsWMSConfig: WMSLayerProps = {
     type: 'wms',
-    url: `${GEOSERVER_URL_PROD}/${ENERGY_MINERALS_WORKSPACE}/oilgasfields/ows`,
-    title: 'Oil and Gas Fields',
+    url: `${PROD_GEOSERVER_URL}/wms`,
+    title: oilGasFieldsTitle,
     visible: true,
     sublayers: [
         {
-            name: 'oilgasfields',
+            name: oilGasFieldsLayerName,
             popupEnabled: true,
             queryable: true,
-            legendUrl: `${GEOSERVER_URL_PROD}/${ENERGY_MINERALS_WORKSPACE}/wms?REQUEST=GetLegendGraphic&VERSION=1.3.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=${ENERGY_MINERALS_WORKSPACE}:oilgasfields`,
+            // legendUrl: `${GEOSERVER_URL_PROD}/${ENERGY_MINERALS_WORKSPACE}/wms?REQUEST=GetLegendGraphic&VERSION=1.3.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=${ENERGY_MINERALS_WORKSPACE}:oilgasfields`,
         },
     ],
     fetchFeatureInfoFunction: async (query) => {
@@ -119,17 +122,19 @@ const oilGasFieldsWMSConfig: WMSLayerProps = {
 };
 
 // Pipelines WMS Layer
+const pipelinesLayerName = 'pipelines';
+const pipelinesTitle = 'Pipelines';
 const pipelinesWMSConfig: WMSLayerProps = {
     type: 'wms',
-    url: `${GEOSERVER_URL_PROD}/${ENERGY_MINERALS_WORKSPACE}/pipelines/ows`,
-    title: 'Pipelines',
+    url: `${PROD_GEOSERVER_URL}/wms`,
+    title: pipelinesTitle,
     visible: true,
     sublayers: [
         {
-            name: 'pipelines',
+            name: pipelinesLayerName,
             popupEnabled: true,
             queryable: true,
-            legendUrl: `${GEOSERVER_URL_PROD}/${ENERGY_MINERALS_WORKSPACE}/wms?REQUEST=GetLegendGraphic&VERSION=1.3.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=EnergyMinerals:pipelines`,
+            // legendUrl: `${GEOSERVER_URL_PROD}/${ENERGY_MINERALS_WORKSPACE}/wms?REQUEST=GetLegendGraphic&VERSION=1.3.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=EnergyMinerals:pipelines`,
         },
     ],
     fetchFeatureInfoFunction: async (query) => {
@@ -173,17 +178,19 @@ const pipelinesWMSConfig: WMSLayerProps = {
 };
 
 // Rivers WMS Layer
+const riversLayerName = 'rivers';
+const riversTitle = 'Major Rivers (NEEDS TO BE ADDED TO GEOSERVER)';
 const riversWMSConfig: WMSLayerProps = {
     type: 'wms',
-    url: `${GEOSERVER_URL_PROD}/${PUBLIC_WORKSPACE}/rivers/ows`,
-    title: 'Major Rivers',
+    url: `${PROD_GEOSERVER_URL}/wms`,
+    title: riversTitle,
     visible: true,
     sublayers: [
         {
-            name: 'rivers',
+            name: riversLayerName,
             popupEnabled: true,
             queryable: true,
-            legendUrl: `${GEOSERVER_URL_PROD}/${PUBLIC_WORKSPACE}/wms?REQUEST=GetLegendGraphic&VERSION=1.3.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=${PUBLIC_WORKSPACE}:rivers`,
+            // legendUrl: `${GEOSERVER_URL_PROD}/${PUBLIC_WORKSPACE}/wms?REQUEST=GetLegendGraphic&VERSION=1.3.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=${PUBLIC_WORKSPACE}:rivers`,
         },
     ],
     fetchFeatureInfoFunction: async (query) => {
@@ -227,17 +234,19 @@ const riversWMSConfig: WMSLayerProps = {
 };
 
 // SCO2 WMS Layer
+const sco2LayerName = 'sco2_draft_13aug24';
+const sco2Title = 'SCO2';
 const sco2WMSConfig: WMSLayerProps = {
     type: 'wms',
-    url: `${GEOSERVER_URL_PROD}/${ENERGY_MINERALS_WORKSPACE}/sco2_draft_13aug24/ows`,
-    title: 'SCO2',
+    url: `${PROD_GEOSERVER_URL}/wms`,
+    title: sco2Title,
     visible: true,
     sublayers: [
         {
-            name: 'sco2_draft_13aug24',
+            name: sco2LayerName,
             popupEnabled: true,
             queryable: true,
-            legendUrl: `${GEOSERVER_URL_PROD}/${ENERGY_MINERALS_WORKSPACE}/wms?REQUEST=GetLegendGraphic&VERSION=1.3.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=EnergyMinerals:sco2_draft_13aug24`,
+            // legendUrl: `${GEOSERVER_URL_PROD}/${ENERGY_MINERALS_WORKSPACE}/wms?REQUEST=GetLegendGraphic&VERSION=1.3.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=EnergyMinerals:sco2_draft_13aug24`,
         },
     ],
     fetchFeatureInfoFunction: async (query) => {
@@ -281,17 +290,19 @@ const sco2WMSConfig: WMSLayerProps = {
 };
 
 // Seamless Geological Units WMS Layer
+const seamlessGeolunitsLayerName = 'seamlessgeolunits';
+const seamlessGeolunitsTitle = 'Seamless Geological Units (500k)';
 const seamlessGeolunitsWMSConfig: WMSLayerProps = {
     type: 'wms',
-    url: `${GEOSERVER_URL_PROD}/${PUBLIC_WORKSPACE}/seamlessgeolunits/ows`,
-    title: 'Seamless Geological Units (500k)',
+    url: `${PROD_GEOSERVER_URL}/wms`,
+    title: seamlessGeolunitsTitle,
     visible: false,
     sublayers: [
         {
-            name: 'seamlessgeolunits',
+            name: seamlessGeolunitsLayerName,
             popupEnabled: true,
             queryable: true,
-            legendUrl: `${GEOSERVER_URL_PROD}/${PUBLIC_WORKSPACE}/wms?REQUEST=GetLegendGraphic&VERSION=1.3.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=${PUBLIC_WORKSPACE}:seamlessgeolunits`,
+            // legendUrl: `${GEOSERVER_URL_PROD}/${PUBLIC_WORKSPACE}/wms?REQUEST=GetLegendGraphic&VERSION=1.3.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=${PUBLIC_WORKSPACE}:seamlessgeolunits`,
         },
     ],
     fetchFeatureInfoFunction: async (query) => {
@@ -356,7 +367,7 @@ const EMPConfig: LayerProps = {
         pipelinesWMSConfig,
         sco2WMSConfig,
         riversWMSConfig,
-        seamlessGeolunitsWMSConfig,
+        // seamlessGeolunitsWMSConfig,
         SITLAConfig
     ]
 };

@@ -28,44 +28,19 @@ function BasinNamesPopup({ graphic }: { graphic: __esri.Graphic }) {
 function OilGasFieldsPopup({ graphic }: { graphic: __esri.Graphic }) {
     return (
         <div className="space-y-1">
-            {graphic.attributes.field_name && (
+            {graphic.attributes.description && (
                 <div>
-                    <b>Field Name: </b>{graphic.attributes.field_name}
+                    <b>Description: </b>{graphic.attributes.description}
                 </div>
             )}
-            {graphic.attributes.field_number && (
+            {graphic.attributes.name && (
                 <div>
-                    <b>Field Number: </b>{graphic.attributes.field_number}
+                    <b>Field Name: </b>{graphic.attributes.name}
                 </div>
             )}
-            {graphic.attributes.field_type && (
+            {graphic.attributes.reportlink && (
                 <div>
-                    <b>Field Type: </b>{graphic.attributes.field_type}
-                </div>
-            )}
-            {graphic.attributes.label && (
-                <div>
-                    <b>Label: </b>{graphic.attributes.label}
-                </div>
-            )}
-            {graphic.attributes.prod_formations && (
-                <div>
-                    <b>Production Formations: </b>{graphic.attributes.prod_formations}
-                </div>
-            )}
-            {graphic.attributes.reservoir_rocks && (
-                <div>
-                    <b>Reservoir Rocks: </b>{graphic.attributes.reservoir_rocks}
-                </div>
-            )}
-            {graphic.attributes.status && (
-                <div>
-                    <b>Status: </b>{graphic.attributes.status}
-                </div>
-            )}
-            {graphic.attributes.date && (
-                <div>
-                    <b>Date: </b>{graphic.attributes.date}
+                    <b>Report Link: </b>{graphic.attributes.reportlink}
                 </div>
             )}
         </div>
