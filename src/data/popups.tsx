@@ -26,22 +26,35 @@ function BasinNamesPopup({ graphic }: { graphic: __esri.Graphic }) {
 }
 
 function OilGasFieldsPopup({ graphic }: { graphic: __esri.Graphic }) {
+    const fields = [
+        { label: "Date", value: graphic.attributes.date },
+        { label: "Field Name", value: graphic.attributes.field_name },
+        { label: "Field Number", value: graphic.attributes.field_number },
+        { label: "Field Type", value: graphic.attributes.field_type },
+        { label: "Label", value: graphic.attributes.label },
+        { label: "Production Formations", value: graphic.attributes.prod_formations },
+        { label: "Reservoir Rocks", value: graphic.attributes.reservoir_rocks },
+        { label: "Status", value: graphic.attributes.status },
+        { label: "Description", value: graphic.attributes.description },
+        { label: "Report Link", value: graphic.attributes.reportlink, isLink: true },
+    ];
+
     return (
-        <div className="space-y-1">
-            {graphic.attributes.description && (
-                <div>
-                    <b>Description: </b>{graphic.attributes.description}
-                </div>
-            )}
-            {graphic.attributes.name && (
-                <div>
-                    <b>Field Name: </b>{graphic.attributes.name}
-                </div>
-            )}
-            {graphic.attributes.reportlink && (
-                <div>
-                    <b>Report Link: </b>{graphic.attributes.reportlink}
-                </div>
+        <div className="space-y-2">
+            {fields.map(
+                ({ label, value, isLink }) =>
+                    value && (
+                        <div key={label}>
+                            <b>{label}: </b>
+                            {isLink ? (
+                                <a href={value as string} target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">
+                                    {value}
+                                </a>
+                            ) : (
+                                <span>{value}</span>
+                            )}
+                        </div>
+                    )
             )}
         </div>
     )

@@ -66,7 +66,7 @@ const basinNamesWMSConfig: WMSLayerProps = {
 };
 
 // Oil and Gas Fields WMS Layer
-const oilGasFieldsLayerName = 'basin_names';
+const oilGasFieldsLayerName = 'oilgasfields';
 const oilGasFieldsTitle = 'Oil and Gas Fields';
 const oilGasFieldsWMSConfig: WMSLayerProps = {
     type: 'wms',
